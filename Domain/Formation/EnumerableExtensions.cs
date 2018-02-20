@@ -30,5 +30,22 @@ namespace Domain.Formation
 
             return shuffle;
         }
+
+        public static IEnumerable<T> RandomSwap<T>(this IEnumerable<T> source)
+        {
+            var swapped = new List<T>(source);
+            if (swapped.Count < 2)
+            {
+                return swapped;
+            }
+
+            int randomPositionLeft = _random.Next(0, swapped.Count - 2);
+            int randomPositionRight = _random.Next(randomPositionLeft + 1, swapped.Count - 1);
+            T temp = swapped[randomPositionLeft];
+            swapped[randomPositionLeft] = swapped[randomPositionRight];
+            swapped[randomPositionRight] = temp;
+
+            return swapped;
+        }
     }
 }

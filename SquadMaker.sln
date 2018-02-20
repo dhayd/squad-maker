@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fluent.Tests", "Fluent.Tests\Fluent.Tests.csproj", "{16E0F3F5-19A7-4DBD-8520-638AFE23B60B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluent.Tests", "Fluent.Tests\Fluent.Tests.csproj", "{16E0F3F5-19A7-4DBD-8520-638AFE23B60B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{912805F1-1DC0-426A-A0D1-857638090266}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{912805F1-1DC0-426A-A0D1-857638090266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{C0E94E14-3F49-46D1-A347-87AD2F7FD599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{C0E94E14-3F49-46D1-A347-87AD2F7FD599}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5EA3D957-8DA6-4F28-B76F-9C636EA9569E}"
+	ProjectSection(SolutionItems) = preProject
+		Players.json = Players.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
