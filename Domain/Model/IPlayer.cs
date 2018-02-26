@@ -8,6 +8,8 @@
 
         string LastName { get; }
 
+        string FullName { get; }
+
         ISkills Skills { get; } 
     }
 }

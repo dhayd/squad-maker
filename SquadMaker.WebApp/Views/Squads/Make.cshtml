@@ -1,0 +1,97 @@
+﻿@using Domain.Formation
+@model Domain.Model.ISquadsSetup
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Waiting List</h2>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Player</th>
+                            <th scope="col">Skating &nbsp;<img src="~/images/svg/skating.svg" height="16" width="16" /></th>
+                            <th scope="col">Shooting &nbsp;<img src="~/images/svg/shooting.svg" height="16" width="16" /></th>
+                            <th scope="col">Checking &nbsp;<img src="~/images/svg/checking.svg" height="16" width="16" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var player in Model.WaitingList)
+                        {
+                            <tr>
+                                <td>@player.FullName</td>
+                                <td>@player.Skills.Skating</td>
+                                <td>@player.Skills.Shooting</td>
+                                <td>@player.Skills.Checking</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach (var cardRow in Model.Squads.Select((x, i) => new { Index = i + 1, Squad = x }).ChunkBy(3))
+{
+    <br />
+    <div class="row">
+        <div class="col-12">
+            <div class="card-deck">
+
+                @foreach (var card in cardRow)
+                {
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Squad #@card.Index</h5>
+
+                            <div class="list-group">
+                                
+                                @foreach (var player in card.Squad.Players)
+                                {
+                                    <div class="list-group-item">
+                                        @player.FullName
+                                        <div class="text-right">
+                                            <img src="~/images/svg/skating.svg" height="12" width="12"/><small>@player.Skills.Skating</small> &nbsp;
+                                            <img src="~/images/svg/shooting.svg" height="12" width="12"/><small>@player.Skills.Shooting</small> &nbsp;
+                                            <img src="~/images/svg/checking.svg" height="12" width="12"/><small>@player.Skills.Checking</small>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <br/>
+                            <div>
+                                <span class="grey-text">Average:</span>
+                                <div class="text-right">
+                                    <img src="~/images/svg/skating.svg" height="16" width="16" />@card.Squad.AverageSkills.Skating &nbsp;
+                                    <img src="~/images/svg/shooting.svg" height="16" width="16" />@card.Squad.AverageSkills.Shooting &nbsp;
+                                    <img src="~/images/svg/checking.svg" height="16" width="16" />@card.Squad.AverageSkills.Checking
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+}
+
+<br /><br />
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-6 text-right">
+        <form class="form-inline" action="/squads/make" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <label for="numberOfSquads">Number of squads</label>
+                <input id="numberOfSquads" name="numberOfSquads" class="form-control mx-sm-2" type="number" min="2" max="42" value="2" />
+                <button class="btn btn-primary" type="submit" value="Submit">Make</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-1"><a class="btn btn-secondary" role="button" href="/squads/make">Reset</a></div>
+</div>

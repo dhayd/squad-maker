@@ -64,6 +64,60 @@ namespace Domain.Tests.Formation
                 .ShouldReturn(ss => !ss.Squads.Any());
         }
 
+        [Fact]
+        public void ShouldReturnNoSquadsWhenRequestingFormationForNegativeNumberOfSquads()
+        {
+            WhenCreatingSquads(-1)
+                .FromPlayers(42.ObjectsOf<IPlayer>())
+                .Then()
+                .ShouldReturn(ss => !ss.Squads.Any());
+        }
+
+        [Fact]
+        public void ShouldReturnAllWaitingWhenRequestingFormationForNegativeNumberOfSquads()
+        {
+            WhenCreatingSquads(-1)
+                .FromPlayers(42.ObjectsOf<IPlayer>())
+                .Then()
+                .ShouldReturn(ss => ss.WaitingList.Count() == 42);
+        }
+
+        [Fact]
+        public void ShouldReturnNoSquadsWhenRequestingFormationForNoSquads()
+        {
+            WhenCreatingSquads(0)
+                .FromPlayers(42.ObjectsOf<IPlayer>())
+                .Then()
+                .ShouldReturn(ss => !ss.Squads.Any());
+        }
+
+        [Fact]
+        public void ShouldReturnAllWaitingWhenRequestingFormationForNoSquads()
+        {
+            WhenCreatingSquads(0)
+                .FromPlayers(42.ObjectsOf<IPlayer>())
+                .Then()
+                .ShouldReturn(ss => ss.WaitingList.Count() == 42);
+        }
+
+        [Fact]
+        public void ShouldReturnNoSquadsWhenRequestingFormationForOneSquad()
+        {
+            WhenCreatingSquads(1)
+                .FromPlayers(42.ObjectsOf<IPlayer>())
+                .Then()
+                .ShouldReturn(ss => !ss.Squads.Any());
+        }
+
+        [Fact]
+        public void ShouldReturnAllWaitingWhenRequestingFormationForOneSquad()
+        {
+            WhenCreatingSquads(1)
+                .FromPlayers(42.ObjectsOf<IPlayer>())
+                .Then()
+                .ShouldReturn(ss => ss.WaitingList.Count() == 42);
+        }
+
         private SquadsSetupFactoryFluentTest WhenCreatingSquads(int numberOfSquads)
         {
             return new SquadsSetupFactoryFluentTest(numberOfSquads);

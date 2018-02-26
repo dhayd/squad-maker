@@ -17,10 +17,15 @@ namespace Domain.Formation
         {
             var playersArray = players as IPlayer[] ?? players.ToArray();
 
+            if (numberOfSquads < 2)
+            {
+                return AllWait(playersArray);
+            }
+
             int squadSize = playersArray.Length / numberOfSquads;
             if (squadSize == 0)
             {
-                return new SquadsSetup(playersArray, Enumerable.Empty<ISquad>());
+                return AllWait(playersArray);
             }
 
             var playersInSquadsAndWaitingList = playersArray.ChunkBy(squadSize).ToArray();
@@ -38,6 +43,11 @@ namespace Domain.Formation
                 });
 
             return new SquadsSetup(waitingList, squads);
+        }
+
+        private static SquadsSetup AllWait(IPlayer[] playersArray)
+        {
+            return new SquadsSetup(playersArray, Enumerable.Empty<ISquad>());
         }
     }
 }

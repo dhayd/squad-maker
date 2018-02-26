@@ -8,14 +8,14 @@ namespace Domain.Serialization
     {
         public IEnumerable<PlayerData> Get()
         {
-            var fileName = @"players.json";
+            var fileName = @"..\players.json";
             string content;
             using (var sr = new StreamReader(fileName))
             {
                 content = sr.ReadToEnd();
             }
 
-            return JsonConvert.DeserializeObject<PlayerData[]>(content);
+            return JsonConvert.DeserializeObject<PlayerDataRoot>(content).players;
         }
     }
 }

@@ -10,4 +10,9 @@
 
         public SkillData[] skills { get; set; }
     }
+
+    public class PlayerDataRoot
+    {
+        public PlayerData[] players { get; set; }
+    }
 }
